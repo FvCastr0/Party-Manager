@@ -7,6 +7,7 @@ const StyledNavbar = styled.nav`
   justify-content: space-between;
   align-items: center;
   margin: 1rem 5rem;
+  flex-wrap: wrap;
 
   p {
     font-family: 'Russo One';

@@ -19,7 +19,9 @@ const StyledHome = styled.div`
 const StyledParties = styled.div`
   display: grid;
   place-items: center;
-  grid-template-columns: repeat(4, 25%);
+  grid-template-columns: repeat(auto-fit, minmax(350px, auto));
+  gap: 1em;
+  justify-content: center;
 `;
 
 export default function Home() {

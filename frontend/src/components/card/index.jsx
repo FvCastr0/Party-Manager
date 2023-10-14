@@ -32,8 +32,10 @@ const StyledButton = styled.button`
   a {
     text-decoration: none;
   }
-  &:hover {
-    background-color: #5E17EB;
+ &:hover {
+  background-color: #5E17EB;
+ }
+  &:hover a {
     color: #FFF;
   }
 `;
