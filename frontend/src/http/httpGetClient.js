@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const httpClientGet = axios.create({
+const httpGetClient = axios.create({
   baseURL: 'http://localhost:3001',
   method: 'GET',
   headers: {
@@ -8,4 +8,4 @@ const httpClientGet = axios.create({
   },
 });
 
-export default httpClientGet;
+export default httpGetClient;

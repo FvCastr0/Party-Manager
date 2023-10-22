@@ -1,19 +1,13 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Card from '../../components/card';
+import PageTitles from '../../components/pageTitles/index';
 import httpClientGet from '../../http/httpGetClient';
 
 const StyledHome = styled.div`
   display: flex;
   flex-direction: column;
   justify-items: center;
-
-  h1 {
-    margin: 2rem 0;
-    font-size: 2rem;
-    font-family: 'Roboto';
-    text-align: center;
-  }
 `;
 
 const StyledParties = styled.div`
@@ -34,9 +28,9 @@ export default function Home() {
 
   return (
     <StyledHome>
-      <h1>Suas Festas</h1>
+      <PageTitles>Suas Festas</PageTitles>
       <StyledParties>
-        {parties.map((party) => <Card key={party.title} title={party.title} image={party.image} id={party._id} />)}
+        {parties.map((party) => <Card key={party._id} title={party.title} image={party.image} id={party._id} />)}
       </StyledParties>
     </StyledHome>
   );
