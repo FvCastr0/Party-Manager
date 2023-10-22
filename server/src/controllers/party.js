@@ -1,5 +1,13 @@
 const { Party } = require('../models/Party');
 
+function checkPartyBudget(budget, services) {
+  const price = services.reduce((sum, service) => sum + service.price, 0);
+  if (price > budget) {
+    return false;
+  }
+  return true;
+}
+
 class PartyController {
   async store(req, res) {
     try {
@@ -12,10 +20,14 @@ class PartyController {
         image: req.body.image,
       };
 
+      if (party.services && !checkPartyBudget(party.budget, party.services)) {
+        return res.status(406).json('O seu orçamento é insuficiente');
+      }
+
       const response = await Party.create(party);
       return res.status(200).json({ response, msg: 'Festa criada com sucesso!' });
     } catch (e) {
-      return res.status(400).json({ msg: 'Não foi possivel criar festa' });
+      return res.status(400).json({ msg: 'Não foi possivel criar festa', e });
     }
   }
 
@@ -30,8 +42,8 @@ class PartyController {
 
   async getOne(req, res) {
     try {
-      const parties = await Party.findById(req.params.id);
-      return res.status(200).json({ parties, msg: 'Festa carregada!' });
+      const party = await Party.findById(req.params.id);
+      return res.status(200).json({ party, msg: 'Festa carregada!' });
     } catch (e) {
       return res.status(400).json({ msg: 'Não foi possivel carregar a festa' });
     }
